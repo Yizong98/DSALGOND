@@ -27,7 +27,8 @@ finalist = sorted(list(set(area_code)))
 print("The numbers called by people in Bangalore have codes:")
 for f in finalist:
 	print(f)
-
+same_region = [elem[1] for elem in calls if elem[0][:5] == "(080)" and elem[1][:5] == "(080)" ]
+print("{} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(round(len(same_region)/len(callby)*100,2)))
 
 """
 TASK 3:

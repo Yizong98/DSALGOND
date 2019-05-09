@@ -10,9 +10,12 @@ with open('texts.csv', 'r') as f:
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
-
-max_elem1 = max(calls, key = lambda x: int(x[3]))
-print("{} spent the longest time, {} seconds, on the phone during September 2016.".format(max_elem1[0],max_elem1[3]))
+call_dict = dict()
+for call in calls:
+	call_dict[call[0]] = call_dict.get(call[0],0) + int(call[3])
+	call_dict[call[1]] = call_dict.get(call[1],0) + int(call[3])
+max_elem1 = max(call_dict, key = lambda x: call_dict[x])
+print("{} spent the longest time, {} seconds, on the phone during September 2016.".format(max_elem1,call_dict[max_elem1]))
 
 """
 TASK 2: Which telephone number spent the longest time on the phone
